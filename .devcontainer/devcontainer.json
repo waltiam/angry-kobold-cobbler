@@ -48,7 +48,8 @@
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "kubectl version",
+	// "postCreateCommand": "kubectl version",
+	"postCreateCommand": "sh ./.devcontainer/custom-scripts/git/configure-git.sh",
 	// Use 'postStartCommand' to run commands after the container is created like starting minikube.
 	"postStartCommand": "nohup bash -c 'minikube start &' > minikube.log 2>&1",
 	// Minikube does not like running as root, so use a non-root user.
