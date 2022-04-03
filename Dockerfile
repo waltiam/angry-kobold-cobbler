@@ -22,6 +22,11 @@ RUN apt-get update && /bin/bash /tmp/library-scripts/common-debian.sh "${INSTALL
 
 VOLUME [ "/var/lib/docker" ]
 
+# install azure tools - this is from MS
+COPY custom-scripts/azure/* /tmp/library-scripts/
+RUN bash /tmp/library-scripts/install-azure.sh \
+    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts/
+
 # Install and configure zsh
 COPY custom-scripts/zsh/* /tmp/library-scripts/
 RUN /bin/bash /tmp/library-scripts/update-zsh.sh "${USERNAME}" \
